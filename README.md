@@ -1,147 +1,139 @@
-🌐 Django URL Shortener + Analytics Dashboard — Internship Project
+# 🌐 Django URL Shortener + Analytics Dashboard  
+### Internship Project – O(1) Coding Club
 
-A complete Django-based URL Shortener website built as part of the O(1) Coding Club Internship.
-This project includes a custom dashboard, analytics tracking, device & country insights, and a fully responsive frontend with animations.
+This is a complete **URL Shortening Web Application** built using **Django**, featuring custom short links, click-tracking analytics, device insights, country-wise charts, and a beautiful animated dashboard.
 
-🚀 Features
-✅ 1. URL Shortener
+This project was developed as a part of the **O(1) Coding Club Internship Program**, and includes all tasks from Backend → Frontend → Analytics → UI Enhancements → Deployment-Ready Code.
 
-Create custom short URLs
+---
 
-Auto-redirect to destination
+## 🚀 Features
 
-Custom slug support
+### ✅ URL Shortener
+- Create custom short links (example: `/r/my-link`)
+- Auto-redirect to the destination URL
+- Custom slug creation (no random strings)
+- Duplicate slug protection
 
-Track number of visits
+### 📊 Analytics Dashboard
+- Click count tracking
+- Device type detection (Mobile / Desktop)
+- Country tracking (basic)
+- Chart.js bar & pie charts
+- Per-link analytics page
+- All-links analytics list
 
-✅ 2. Full Analytics Dashboard
+### 🎨 Beautiful Frontend UI
+- Animated Dashboard (`/task`)
+- Clean Bootstrap-based landing page
+- Custom static images (SVG icons created manually)
+- Responsive design
+- Smooth fade-in animations
 
-Bar chart showing country-wise clicks
+### 🗂 Admin Panel
+- Manage:
+  - Links  
+  - Click records  
+  - Motivational quotes  
+- Admin UI cleaned for internship requirements
 
-Pie chart showing device distribution
+---
 
-Automatic detection of desktop/mobile
+## 🏛 Tech Stack
 
-IP logging & basic geo-tagging
+- **Backend:** Django (Python 3.14)
+- **Frontend:** HTML, CSS, Bootstrap 5, Chart.js, SVG Icons
+- **Database:** SQLite 3
+- **Tools:** Git, GitHub, VS Code
 
-Analytics for each short link
+---
 
-All-links table view
+## 📁 Project Structure
 
-✅ 3. Internship Task Dashboard
+```
+django_internship_project/
+│── internship_project/        # Main project folder
+│── main/                      # Django app (URL Shortener + Analytics)
+│   │── migrations/
+│   │── static/main/           # CSS, JS, Images
+│   │── templates/main/        # HTML files
+│   │── models.py              # Link, Click, Quote models
+│   │── views.py               # All backend logic
+│   │── urls.py                # Route definitions
+│   └── admin.py               # Admin customizations
+│── db.sqlite3                 # Local database
+│── manage.py
+│── README.md                  # (This file)
+└── .gitignore
+```
 
-Beautiful animated dashboard including:
+---
 
-Personalized greeting
+## ▶️ How to Run the Project Locally
 
-Current date and time
+### 1️⃣ Activate Virtual Environment
+```bash
+venv\Scripts\activate
+```
 
-Random motivational quote
-
-Topics covered
-
-Quick navigation buttons
-
-Link creation form
-
-✅ 4. Modern Frontend
-
-Custom-designed templates
-
-Smooth animations (CSS + transitions)
-
-SVG illustrations
-
-Bootstrap UI support
-
-Fully responsive on desktop/mobile
-
-📁 Project Structure
-internship_project/
-│── internship_project/       # Main project settings
-│── main/                     # Core Django app
-│   │── models.py             # Database Models
-│   │── admin.py              # Admin panel customization
-│   │── views.py              # Application logic
-│   │── urls.py               # App URL routes
-│   │── templates/main/       # All HTML files
-│   │── static/main/          # CSS, images, SVGs
-│── manage.py                 # Django entry point
-│── .gitignore                # Ignore venv, cache, DB
-│── README.md                 # (This file)
-
-🛠️ Technologies Used
-
-Python 3.14
-
-Django 5.2
-
-SQLite (default)
-
-Bootstrap
-
-Chart.js
-
-HTML, CSS, JavaScript
-
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
-
-2️⃣ Create Virtual Environment
-python -m venv .venv
-
-3️⃣ Activate Virtual Environment
-
-Windows:
-
-.venv\Scripts\activate
-
-4️⃣ Install Dependencies
+### 2️⃣ Install Dependencies (if needed)
+```bash
 pip install django
+```
 
-5️⃣ Run Migrations
-python manage.py migrate
-
-6️⃣ Start Server
+### 3️⃣ Run Server
+```bash
 python manage.py runserver
+```
 
-🌍 Available Pages (URLs)
-🔸 1. Home Page — Landing Page
-http://127.0.0.1:8000/
+### 4️⃣ Open in Browser
+- Dashboard → http://127.0.0.1:8000/task/
+- URL Shortener → http://127.0.0.1:8000/
+- All Analytics → http://127.0.0.1:8000/all-analytics/
+- Admin Panel → http://127.0.0.1:8000/admin/
 
-🔸 2. Internship Dashboard (task page)
-http://127.0.0.1:8000/task/
+---
 
-🔸 3. All Analytics (table)
-http://127.0.0.1:8000/all-analytics/
+## 🖼 Screenshots  
+*(Add screenshots here once uploaded to GitHub)*  
 
-🔸 4. Single Link Analytics (charts)
-http://127.0.0.1:8000/analytics/<slug>/
+Example (after uploading images):
+```
+![Dashboard](static/screenshots/dashboard.png)
+![Analytics](static/screenshots/analytics.png)
+```
 
-🔸 5. Admin Panel
-http://127.0.0.1:8000/admin/
+---
 
-📊 Screenshots (Add Your Images Here)
+## 📌 Internship Tasks Completed
 
-You can add your screenshots like this:
+✔ Full Backend (Models, Views, Redirect Logic, Validations)  
+✔ Django Admin Configuration  
+✔ URL Shortening + Redirect + Tracking  
+✔ All Analytics Page  
+✔ Individual Analytics Page with Charts  
+✔ Beautiful Frontend + Animations (Task Dashboard)  
+✔ SVG Icons & Images  
+✔ Static Files Setup  
+✔ GitHub Repository Integration  
 
-![Dashboard](static/main/screenshot-dashboard.png)
-![Analytics Page](static/main/screenshot-analytics.png)
+---
 
-🏁 Conclusion
+## 🤝 Contribution
 
-This project demonstrates:
+This project is part of an internship, but improvements are welcome.  
+Create a pull request if you'd like to add enhancements.
 
-Django backend development
+---
 
-URL routing + database models
+## 📄 License
 
-Data visualization with charts
+This project is released for educational purposes as part of  
+**O(1) Coding Club Internship Program**.
 
-UI/UX design using HTML/CSS
+---
 
-Clean project structure
-
-Perfect to show during internship interviews or as a portfolio project.
+## 👩‍💻 Author  
+**Vamshika Wagangeri**  
+Django Intern – O(1) Coding Club  
+GitHub: [@vamshikavw](https://github.com/vamshikavw)
