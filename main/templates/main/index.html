@@ -1,0 +1,159 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - Internship Task</title>
+
+    <link rel="stylesheet" href="{% static 'main/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+
+    <img src="{% static 'main/Rebrandly.png' %}" width="150">
+    <img src="{% static 'main/copy-icon.png' %}" width="60">
+    <img src="{% static 'main/img/hero.svg' %}" class="hero-illustration">
+
+
+
+</head>
+
+<body class="home-body">
+<body>
+    <header class="site-nav">
+      <a href="{% url 'home' %}" class="site-logo">🔗 URL Shortener</a>
+      <nav>
+        <a href="{% url 'task' %}">Internship Dashboard</a>
+        <a href="{% url 'all_analytics' %}">All Analytics</a>
+        <a href="/admin/" target="_blank">Admin</a>
+      </nav>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 py-3 shadow-sm">
+        <img src="{% static 'Rebrandly.png' %}" width="150">
+    </nav>
+    <nav class="site-nav">
+    <div class="site-nav-left">
+      <span class="site-logo">🌐</span>
+      <span class="site-brand">Django URL Shortener</span>
+    </div>
+    <div class="site-nav-links">
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'home' %}">Shortener</a>
+      <a href="{% url 'learn' %}">Learn</a>
+      <a href="{% url 'all_analytics' %}">Analytics</a>
+    </div>
+  </nav>
+
+    <!-- HEADER -->
+    <section class="container py-5 home-hero">
+  <div class="row align-items-center">
+    <!-- LEFT: TEXT + FORM -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h1 class="fw-bold mb-3">Shorten Your Links in Seconds</h1>
+      <p class="text-muted">
+        Create clean, trackable URLs for your portfolio, projects, and social media.
+      </p>
+
+      <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" class="form-control p-3" name="destination"
+                 placeholder="Enter your long URL" required>
+
+          <input type="text" class="form-control p-3" name="slug"
+                 placeholder="Custom short name (ex: my-link)" required>
+
+          <button class="btn btn-primary px-4" type="submit">Shorten</button>
+        </div>
+      </form>
+
+      <p class="small text-muted">
+        Example: <code>{{ request.build_absolute_uri }}go/my-link/</code>
+      </p>
+    </div>
+
+    <!-- RIGHT: SVG IMAGE -->
+    <div class="col-md-6 text-center">
+      <img src="{% static 'main/hero-landing.svg' %}" 
+           alt="Link shortener illustration"
+           class="hero-illustration">
+    </div>
+  </div>
+</section>
+
+
+
+    <p class="text-muted hero-subtitle fade-in-delayed">
+        Paste your URL below and create a beautiful custom short link with analytics.
+    </p>
+
+    <!-- URL FORM -->
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="input-group mb-3 w-75 mx-auto hero-form">
+            <input type="text" class="form-control p-3" name="destination"
+                   placeholder="Enter your long URL" required>
+
+            <input type="text" class="form-control p-3" name="slug"
+                   placeholder="Custom short name (ex: my-link)" required>
+
+            <button class="btn btn-primary px-4 hero-btn" type="submit">Shorten</button>
+        </div>
+    </form>
+
+    <!-- Little helper text -->
+    <p class="helper-text">
+        Example: <code>https://very-long-tracking-url.com/with/query?params=123</code> → <code>your-site.com/r/my-link</code>
+    </p>
+
+    <!-- Illustration (use your Rebrandly logo as a hero image) -->
+    <div class="hero-illustration">
+        <img src="{% static 'Rebrandly.png' %}" alt="URL Shortener" />
+    </div>
+</section>
+
+
+    <!-- FEATURES -->
+    <section class="container mt-5 features-section">
+    <h3 class="fw-bold mb-4">Why use our Shortener?</h3>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <img src="{% static 'copy-icon.png' %}" width="60">
+                <h5>Easy to Use</h5>
+                <p>Shorten any link in just a few seconds.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card">
+                <img src="{% static 'copy-icon.png' %}" width="60">
+                <h5>Track Analytics</h5>
+                <p>View clicks, devices and countries in real time.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card">
+                <img src="{% static 'copy-icon.png' %}" width="60">
+                <h5>Custom & Branded</h5>
+                <p>Create short links that match your brand.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4 mt-5 text-muted">
+        <p>&copy; {{ today|date:"Y" }} | Internship Project - URL Shortener</p>
+    </footer>
+</body class="home-body">
+
+</html>
+{% endblock %}

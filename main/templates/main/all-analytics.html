@@ -1,0 +1,94 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Short Links</title>
+
+    <link rel="stylesheet" href="{% static 'main/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+
+</head>
+
+<body class="container py-5">
+  <header class="site-nav mb-3">
+    <a href="{% url 'home' %}" class="site-logo">🔗 URL Shortener</a>
+    <nav>
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'all_analytics' %}">All Analytics</a>
+    </nav>
+  </header>
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">🔗 All Shortened Links</h2>
+        <a href="/" class="btn btn-secondary">← Back to Home</a>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card shadow-sm p-4">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Short URL</th>
+                    <th>Long URL</th>
+                    <th>Total Clicks</th>
+                    <th>View Analytics</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for l in links %}
+                <tr>
+                    <td>
+                        <a href="/go/{{ l.slug }}" target="_blank">
+                            /go/{{ l.slug }}
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{{ l.long_url }}" target="_blank">
+                            {{ l.long_url }}
+                        </a>
+                    </td>
+
+                    <td>{{ l.total }}</td>
+
+                    <td>
+                        <a class="btn btn-primary btn-sm"
+                           href="{% url 'analytics' slug=l.slug %}">
+                            View
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center py-3 text-muted">
+                        No links found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <nav class="site-nav">
+    <div class="site-nav-left">
+      <span class="site-logo">🌐</span>
+      <span class="site-brand">Django URL Shortener</span>
+    </div>
+    <div class="site-nav-links">
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'home' %}">Shortener</a>
+      <a href="{% url 'learn' %}">Learn</a>
+      <a href="{% url 'all_analytics' %}">Analytics</a>
+    </div>
+  </nav>
+
+</body>
+
+</html>
+{% endblock %}
+

@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Analytics – {{ slug }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <img src="{% static 'main/img/analytics.svg' %}">
+
+
+
+  <link rel="stylesheet" href="{% static 'main/style.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="analytics-body">
+<body class="container py-4">
+  <header class="site-nav mb-3">
+    <a href="{% url 'home' %}" class="site-logo">🔗 URL Shortener</a>
+    <nav>
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'all_analytics' %}">All Analytics</a>
+    </nav>
+  </header>
+
+  <header class="analytics-header">
+    <h1>📊 Analytics for <span class="slug-highlight">{{ slug }}</span></h1>
+    <a href="{% url 'home' %}" class="btn-back">← Back to Home</a>
+  </header>
+
+  <main class="analytics-main">
+
+    <!-- link summary card -->
+    <section class="card analytics-card">
+      <h2>Link Details</h2>
+      <p><strong>Long URL:</strong> {{ link.destination }}</p>
+      <p><strong>Total Clicks:</strong> {{ total_clicks }}</p>
+      <p><strong>Created:</strong> {{ link.created_at|date:"d M Y, H:i" }}</p>
+
+    </section>
+
+    <!-- country chart -->
+    <section class="card analytics-card">
+      <h2>Country Analytics</h2>
+      <canvas id="countryChart" height="160"></canvas>
+    </section>
+
+    <!-- device chart -->
+    <section class="card analytics-card">
+      <h2>Device Split</h2>
+      <canvas id="deviceChart" height="160"></canvas>
+    </section>
+  </main>
+
+  <!-- safely pass data from Django to JS -->
+  {{ countries|json_script:"countries-data" }}
+  {{ clicks|json_script:"clicks-data" }}
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Read safe JSON from Django
+  const countries = JSON.parse(
+    document.getElementById("countries-data").textContent
+  );
+  const clicks = JSON.parse(
+    document.getElementById("clicks-data").textContent
+  );
+
+  const desktop = {{ desktop }};
+  const mobile  = {{ mobile }};
+
+  // Country bar chart
+  const ctx1 = document.getElementById('countryChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: countries,
+      datasets: [{
+        label: 'Clicks',
+        data: clicks
+      }]
+    }
+  });
+
+  // Device pie chart
+  const ctx2 = document.getElementById('deviceChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: ['Desktop', 'Mobile'],
+      datasets: [{
+        data: [desktop, mobile]
+      }]
+    }
+  });
+</script>
+<nav class="site-nav">
+    <div class="site-nav-left">
+      <span class="site-logo">🌐</span>
+      <span class="site-brand">Django URL Shortener</span>
+    </div>
+    <div class="site-nav-links">
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'home' %}">Shortener</a>
+      <a href="{% url 'learn' %}">Learn</a>
+      <a href="{% url 'all_analytics' %}">Analytics</a>
+    </div>
+  </nav>
+
+</body>
+</html>
+{% endblock %}

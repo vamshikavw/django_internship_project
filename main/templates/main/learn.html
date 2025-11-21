@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Learn – Django URL Shortener</title>
+  <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body class="learn-body">
+
+  <nav class="site-nav">
+    <div class="site-nav-left">
+      <span class="site-logo">📚</span>
+      <span class="site-brand">Django URL Shortener – Learn</span>
+    </div>
+    <div class="site-nav-links">
+      <a href="{% url 'task' %}">Dashboard</a>
+      <a href="{% url 'home' %}">Shortener</a>
+      <a href="{% url 'learn' %}" class="active">Learn</a>
+      <a href="{% url 'all_analytics' %}">Analytics</a>
+    </div>
+  </nav>
+
+  <main class="learn-main">
+    <header class="learn-hero">
+      <h1>Learn the Concepts Behind Your Project</h1>
+      <p>From database basics to Django ORM, models, admin and migrations.</p>
+    </header>
+
+    <section class="learn-grid">
+      {% for s in sections %}
+      <article class="learn-card fade-section">
+        <h2>{{ s.title }}</h2>
+        <ul>
+          {% for p in s.points %}
+          <li>{{ p }}</li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with ❤️ by {{ request.user.username|default:'Vamshika Wagangeri' }}</p>
+  </footer>
+
+  <script>
+    // tiny scroll-in animation for learn cards
+    const cards = document.querySelectorAll('.fade-section');
+    const onScroll = () => {
+      const trigger = window.innerHeight * 0.85;
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < trigger) card.classList.add('visible');
+      });
+    };
+    document.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+  </script>
+</body>
+</html>

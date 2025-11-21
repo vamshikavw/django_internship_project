@@ -1,0 +1,87 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ internship_title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- main CSS (correct static path) -->
+  <link rel="stylesheet" href="{% static 'main/style.css' %}">
+  <img src="{% static 'main/img/dashboard.svg' %}">
+
+
+</head>
+
+<body class="task-body">
+<header class="site-nav">
+    <a href="{% url 'task' %}" class="site-logo">🌐 Internship Dashboard</a>
+    <nav>
+      <a href="{% url 'home' %}">URL Shortener</a>
+      <a href="{% url 'all_analytics' %}">All Analytics</a>
+      <a href="/admin/" target="_blank">Admin</a>
+    </nav>
+  </header>
+  <div class="task-card">
+    <div class="row g-4 align-items-center">
+      <!-- LEFT: TEXT CONTENT -->
+      <div class="col-md-7">
+        <div class="fade delay1">
+          <div class="task-pill">O(1) Coding Club – Internship Task</div>
+          <h1 class="task-title">{{ internship_title }}</h1>
+          <p class="task-subtitle">👋 Hello, {{ student_name }}</p>
+          <p class="task-message">{{ message }}</p>
+        </div>
+
+        <div class="task-info-box fade delay2 mt-2">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="task-label">DATE & TIME</div>
+              <div class="task-value">{{ today|date:"d M Y, h:i A" }}</div>
+            </div>
+            <div class="col-sm-6 mt-2 mt-sm-0">
+              <div class="task-label">TODAY'S QUOTE</div>
+              <div class="task-value">{{ quote }}</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-title fade delay3 mt-3">Topics covered in this task</h3>
+        <ul class="task-topics fade delay4">
+          {% for t in topics %}
+            <li>{{ t }}</li>
+          {% endfor %}
+        </ul>
+
+        <div class="task-links fade delay5 mt-3">
+          <a href="{% url 'home' %}" class="task-btn-primary">🏠 URL Shortener</a>
+          <a href="{% url 'all_analytics' %}" class="task-btn-secondary">📊 All Analytics</a>
+          <a href="{% url 'analytics' slug='test-link' %}" class="task-btn-outline">
+            🔍 Example Analytics
+          </a>
+        </div>
+
+        <form method="get" action="" class="task-inline-form fade delay6">
+          <button type="submit">🔁 Refresh Quote</button>
+        </form>
+
+        <div class="task-footer fade delay6">
+          <p>Dashboard URL: <strong>http://127.0.0.1:8000/task/</strong></p>
+          <p class="task-made">Made with ❤️ by {{ student_name }} | O(1) Coding Club Internship</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: DASHBOARD ILLUSTRATION -->
+      <div class="col-md-5 text-center fade delay4">
+        <img src="{% static 'main/hero-dashboard.svg' %}"
+             alt="Dashboard illustration"
+             class="dashboard-illustration">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+{% endblock %}
