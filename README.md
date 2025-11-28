@@ -1,139 +1,86 @@
-# 🌐 Django URL Shortener + Analytics Dashboard  
-### Internship Project – O(1) Coding Club
+# Django URL Shortener & Analytics Dashboard
 
-This is a complete **URL Shortening Web Application** built using **Django**, featuring custom short links, click-tracking analytics, device insights, country-wise charts, and a beautiful animated dashboard.
+A mini web application built with **Django** as part of the **O(1) Coding Club Internship**.  
+It lets you:
 
-This project was developed as a part of the **O(1) Coding Club Internship Program**, and includes all tasks from Backend → Frontend → Analytics → UI Enhancements → Deployment-Ready Code.
+- Create **custom short URLs** (like `my-link`) for any long URL  
+- Track **click analytics** (countries & device types)  
+- View a **summary dashboard** with a motivational quote and internship details  
 
 ---
 
 ## 🚀 Features
 
-### ✅ URL Shortener
-- Create custom short links (example: `/r/my-link`)
-- Auto-redirect to the destination URL
-- Custom slug creation (no random strings)
-- Duplicate slug protection
+### 🧩 1. URL Shortener
+- Convert any **long URL** into a **short, readable** link
+- Use your own custom **slug** (e.g. `cc-ranklist`, `my-portfolio`)
+- Duplicate slugs are handled safely by updating or showing analytics
 
-### 📊 Analytics Dashboard
-- Click count tracking
-- Device type detection (Mobile / Desktop)
-- Country tracking (basic)
-- Chart.js bar & pie charts
-- Per-link analytics page
-- All-links analytics list
+### 📊 2. Analytics Dashboard
+For each short link, you can see:
 
-### 🎨 Beautiful Frontend UI
-- Animated Dashboard (`/task`)
-- Clean Bootstrap-based landing page
-- Custom static images (SVG icons created manually)
-- Responsive design
-- Smooth fade-in animations
+- Total clicks
+- Clicks grouped by **country**
+- **Device breakdown**: Desktop vs Mobile
+- Visualized using **Chart.js** bar & pie charts
 
-### 🗂 Admin Panel
-- Manage:
-  - Links  
-  - Click records  
-  - Motivational quotes  
-- Admin UI cleaned for internship requirements
+There is also a **“All Links Analytics”** page that shows:
+- All created short links
+- Their destination URL
+- Total number of clicks
+- Quick link to each link’s analytics page
 
----
+### 🎨 3. Internship Task Dashboard (`/task/`)
+A custom-designed **Task Dashboard page** that includes:
 
-## 🏛 Tech Stack
+- Internship title and student name  
+- Current date & time  
+- A **random motivational quote** from the database  
+- Topics covered in the project  
+- Quick navigation buttons:
+  - Open URL shortener landing page
+  - Open all analytics page
+  - Open example analytics for a known slug
 
-- **Backend:** Django (Python 3.14)
-- **Frontend:** HTML, CSS, Bootstrap 5, Chart.js, SVG Icons
-- **Database:** SQLite 3
-- **Tools:** Git, GitHub, VS Code
+The dashboard uses **CSS animations, gradients, and a card layout** to feel like a modern product page.
 
 ---
 
-## 📁 Project Structure
+## 🛠 Tech Stack
 
-```
+- **Backend:** Django 5.x (Python)
+- **Frontend:** HTML, CSS, Bootstrap, Chart.js
+- **Database:** SQLite (default Django DB for development)
+- **Other:** Django Admin for internal management
+
+---
+
+## 📂 Project Structure
+
+```text
 django_internship_project/
-│── internship_project/        # Main project folder
-│── main/                      # Django app (URL Shortener + Analytics)
-│   │── migrations/
-│   │── static/main/           # CSS, JS, Images
-│   │── templates/main/        # HTML files
-│   │── models.py              # Link, Click, Quote models
-│   │── views.py               # All backend logic
-│   │── urls.py                # Route definitions
-│   └── admin.py               # Admin customizations
-│── db.sqlite3                 # Local database
-│── manage.py
-│── README.md                  # (This file)
-└── .gitignore
-```
-
----
-
-## ▶️ How to Run the Project Locally
-
-### 1️⃣ Activate Virtual Environment
-```bash
-venv\Scripts\activate
-```
-
-### 2️⃣ Install Dependencies (if needed)
-```bash
-pip install django
-```
-
-### 3️⃣ Run Server
-```bash
-python manage.py runserver
-```
-
-### 4️⃣ Open in Browser
-- Dashboard → http://127.0.0.1:8000/task/
-- URL Shortener → http://127.0.0.1:8000/
-- All Analytics → http://127.0.0.1:8000/all-analytics/
-- Admin Panel → http://127.0.0.1:8000/admin/
-
----
-
-## 🖼 Screenshots  
-*(Add screenshots here once uploaded to GitHub)*  
-
-Example (after uploading images):
-```
-![Dashboard](static/screenshots/dashboard.png)
-![Analytics](static/screenshots/analytics.png)
-```
-
----
-
-## 📌 Internship Tasks Completed
-
-✔ Full Backend (Models, Views, Redirect Logic, Validations)  
-✔ Django Admin Configuration  
-✔ URL Shortening + Redirect + Tracking  
-✔ All Analytics Page  
-✔ Individual Analytics Page with Charts  
-✔ Beautiful Frontend + Animations (Task Dashboard)  
-✔ SVG Icons & Images  
-✔ Static Files Setup  
-✔ GitHub Repository Integration  
-
----
-
-## 🤝 Contribution
-
-This project is part of an internship, but improvements are welcome.  
-Create a pull request if you'd like to add enhancements.
-
----
-
-## 📄 License
-
-This project is released for educational purposes as part of  
-**O(1) Coding Club Internship Program**.
-
----
-
-## 👩‍💻 Author  
-**Vamshika Wagangeri**  
-Django Intern – O(1) Coding Club  
-GitHub: [@vamshikavw](https://github.com/vamshikavw)
+│
+├── manage.py
+├── db.sqlite3
+├── internship_project/        # Django project settings, URLs, WSGI
+│   └── urls.py                # Root URL configuration
+│
+├── main/                      # Main application
+│   ├── models.py              # MotivationalQuote, Link, Click models
+│   ├── views.py               # Task dashboard, URL shortener, analytics views
+│   ├── urls.py                # App URLs (/, /task/, /r/<slug>/, /analytics/, etc.)
+│   ├── admin.py               # Admin registrations for all models
+│   ├── templates/
+│   │   └── main/
+│   │       ├── index.html         # URL shortener landing page
+│   │       ├── task.html          # Internship dashboard page
+│   │       ├── analytics.html     # Per-link analytics with charts
+│   │       └── all-analytics.html # List of all links + their stats
+│   └── static/
+│       └── main/
+│           ├── style.css          # Custom styling & animations
+│           ├── bootstrap.min.css  # Bootstrap CSS
+│           ├── hero-landing.svg   # Landing page illustration
+│           ├── hero-task.svg      # Task page illustration (if used)
+│           ├── Rebrandly.png      # Logo image
+│           └── copy-icon.png      # Icon for features cards
