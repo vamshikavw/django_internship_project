@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)=jxnlef_+lfmv^m7bn9x+0!!0$mi&o$4euri+254m&*skkh$h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
 
 
 
@@ -128,4 +128,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from pathlib import Path
 import os
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
